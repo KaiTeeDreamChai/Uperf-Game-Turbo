@@ -310,7 +310,7 @@ if [ "$(is_mtk)" == "true" ]; then
 fi
 
 stop vendor_tcpdump
-stop miuibooster
-stop mcd_service
+# stop miuibooster
+# stop mcd_service
 
 killall -9 mi_thermald

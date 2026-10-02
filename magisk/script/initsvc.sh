@@ -37,3 +37,4 @@ sh $SCRIPT_PATH/powercfg_once.sh
 sh $SCRIPT_PATH/platform_special.sh
 sh $SCRIPT_PATH/miui_migt.sh
 uperf_start
+echo "auto" > "$USER_PATH/cur_powermode.txt"

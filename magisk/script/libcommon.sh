@@ -3,7 +3,7 @@
 # Copyright (C) 2021-2022 Matt Yang
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
+# you may not use this file excepywxt in compliance with the License.
 # You may obtain a copy of the License at
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
@@ -42,6 +42,15 @@ mask_val() {
             mount --bind /data/local/tmp/mount_mask "$p"
         fi
     done
+}
+
+# $1:value $2:filepaths
+mask_val() {
+for p in $2; do
+if [ -f "$p" ]; then
+echo "$1" >"$p"
+fi
+done
 }
 
 # $1:value $2:filepaths

@@ -1,23 +1,65 @@
-# 分应用性能模式配置
-# Per-app dynamic power mode rule
-# '-' means offscreen rule
-# '*' means default rule
+# Uperf-Game-Turbo 专属分应用策略 (一加13T / sdm8e 定制版)
+# '-' 代表熄屏场景规则 (offscreen)
+# '*' 代表未匹配应用的兜底规则 (default)
 
-com.tencent.tmgp.sgame performance
-com.miHoYo.Yuanshen performance
-com.tencent.tmgp.pubgmhd performance
-com.miHoYo.bh3.bilibili performance
-com.miHoYo.enterprise.NGHSoD performance
-com.miHoYo.ys.bilibili performance
-com.tencent.lolm performance
-com.netease.wotb performance
-com.tencent.tmgp.speedmobile performance
-com.tencent.KiHan performance
-fi.twomenandadog.zombiecatchers performance
-com.garena.game.kgtw performance
-com.tencent.ig performance
-com.supercell.brawlstars performance
+# ===== 1. 系统内置轻量应用 (省电档 powersave) =====
+# 桌面 / 启动器
+com.android.launcher3 powersave
+# 系统设置
+com.android.settings powersave
+# 时钟 / 闹钟
+com.android.deskclock powersave
+# 计算器
+com.android.calculator2 powersave
+# 联系人 / 通话
+com.android.contacts powersave
+com.android.dialer powersave
+com.google.android.contacts powersave
+# 文件管理
+com.android.documentsui powersave
+com.google.android.apps.nbu.files powersave
+# 日历 / 便签 / 录音
+org.lineageos.etar powersave
+org.lineageos.recorder powersave
+org.lineageos.lineagesettings powersave
+
+# ===== 2. 相机与影像算法应用 (均衡档 balance) =====
+com.oplus.camera balance
+org.lineageos.aperture balance
+com.google.android.GoogleCamera balance
+
+# ===== 3. 性能测试与极端压测工具 (极速档 fast) =====
 com.ioncannon.cpuburn.gpugflops fast
 com.primatelabs.geekbench5 fast
+com.primatelabs.geekbench6 fast
+com.antutu.ABenchMark fast
+
+# ===== 4. 主流游戏列表 (性能档 performance) =====
+# 腾讯系
+com.tencent.tmgp.sgame performance
+com.tencent.tmgp.pubgmhd performance
+com.tencent.ig performance
+com.tencent.lolm performance
+com.tencent.tmgp.speedmobile performance
+com.tencent.KiHan performance
+# 米哈游系
+com.miHoYo.Yuanshen performance
+com.miHoYo.ys.bilibili performance
+com.miHoYo.enterprise.NGHSoD performance
+com.miHoYo.hkrpg performance
+com.miHoYo.Nap performance
+com.miHoYo.bh3.bilibili performance
+# 库洛系
+com.kurogame.wutheringwaves.bilibili performance
+com.kurogame.kj performance
+# 网易与其他热门
+com.netease.wotb performance
+com.garena.game.kgtw performance
+com.supercell.brawlstars performance
+fi.twomenandadog.zombiecatchers performance
+
+# ===== 5. 熄屏规则 (熄屏死锁 1.0W 极低功耗) =====
 - powersave
-* performance
+
+# ===== 6. 默认通配规则 (所有微信/QQ/抖音/淘宝/Chrome等日常App自动走均衡) =====
+* balance
