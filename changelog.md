@@ -1,6 +1,6 @@
 # 更新日志
 
-## Uperf-Game-Turbo 1.52-sdm8e-Custom (2026-10-02)
+## Uperf-Game-Turbo 1.51.1-sdm8e-Custom (2026-10-02)
 
 【一加 13T / 骁龙 8 至尊版 专属定制版】
 
