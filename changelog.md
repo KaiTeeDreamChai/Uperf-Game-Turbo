@@ -1,6 +1,20 @@
 # 更新日志
 
-## Uperf-Game-Turbo1.51
+## Uperf-Game-Turbo 1.52-sdm8e-Custom (2026-10-02)
+
+【一加 13T / 骁龙 8 至尊版 专属定制版】
+
+- ⚡ **专机专精**：彻底删除所有除 8E 以外的冗余芯片配置及安装检测代码，安装包与部署大幅精简
+- ⏱️ **触屏提频优化**：将全局触屏响应时间从 4.0s 优化至 2.0s，兼顾游戏极速跟手与日常滑动低发热
+- 🎯 **三级流转机制**：建立类原生系统应用（省电）/ 相机与日常主流应用（均衡）/ 游戏（性能）三级梯度调度
+- 💤 **熄屏深度省电**：熄屏自动进入 powersave 锁死 1.0W 极低功耗，亮屏毫秒级恢复
+- 🚀 **开机自动接管**：初始化默认进入 auto 智能调度，无需手动切换
+- 🔋 **内置电量守护**：集成 3 分钟轮询双稳态电池守护进程，电量 ≤20% 自动锁定省电档，充电或恢复后自动解除锁定并弹出系统通知提示
+- 📖 **文档重构**：精简重写 README，说明所有专机定制细节
+
+---
+
+## Uperf-Game-Turbo 1.51 (Upstream)
 
 【更新内容】
 
@@ -11,13 +25,3 @@
     ✅ 调整功耗模型
     ✅ 调整并重写处理器识别
     ✅ 更新内置asoul版本
-
-【Update Details】
-
-    ✅  Adapted to more processors
-    ✅  Adjusted processor identification
-    ✅  Adjusted power consumption and performance in various modes
-    ✅  Fixed occasional stuttering bugs
-    ✅  Adjusted power consumption model
-    ✅  Adjusted and rewrote processor identification
-    ✅  Updated built-in Asoul version
