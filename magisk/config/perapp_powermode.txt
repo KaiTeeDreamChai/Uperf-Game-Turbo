@@ -23,18 +23,44 @@ org.lineageos.etar powersave
 org.lineageos.recorder powersave
 org.lineageos.lineagesettings powersave
 
-# ===== 2. 相机与影像算法应用 (均衡档 balance) =====
+# ===== 2. 系统管理与玩机辅助工具 (省电档 powersave) =====
+# Thanox (灭霸)
+github.tornaco.android.thanos powersave
+# KernelSU Next (随机包名与官方包名)
+yhaxhr.birgvn.bmwbne powersave
+me.weishu.kernelsu powersave
+# LSPosed Manager
+org.lsposed.manager powersave
+# Hide My Applist (HMA)
+org.frknkrc44.hma_oss powersave
+# InstallerX-Revived 与锁定工具
+com.rosan.installer.x.revived powersave
+io.github.chimio.inxlocker powersave
+# DevCheck 硬件检测
+flar2.devcheck powersave
+
+# ===== 3. 短视频与内容流媒体 (省电档 powersave) =====
+# 抖音 / 抖音极速版 (8E芯片硬解高刷视频毫无压力，锁1.0W功耗墙极致省电)
+com.ss.android.ugc.aweme powersave
+com.ss.android.ugc.aweme.lite powersave
+# 快手 / 快手极速版
+com.smile.gifmaker powersave
+com.kuaishou.nebula powersave
+
+# ===== 4. 相机与应用市场 (均衡档 balance) =====
 com.oplus.camera balance
 org.lineageos.aperture balance
 com.google.android.GoogleCamera balance
+# Google Play 商店 (保持均衡，保证多任务下载安装解压与渲染流畅)
+com.android.vending balance
 
-# ===== 3. 性能测试与极端压测工具 (极速档 fast) =====
+# ===== 5. 性能测试与极端压测工具 (极速档 fast) =====
 com.ioncannon.cpuburn.gpugflops fast
 com.primatelabs.geekbench5 fast
 com.primatelabs.geekbench6 fast
 com.antutu.ABenchMark fast
 
-# ===== 4. 主流游戏列表 (性能档 performance) =====
+# ===== 6. 主流游戏列表 (性能档 performance) =====
 # 腾讯系
 com.tencent.tmgp.sgame performance
 com.tencent.tmgp.pubgmhd performance
@@ -58,8 +84,8 @@ com.garena.game.kgtw performance
 com.supercell.brawlstars performance
 fi.twomenandadog.zombiecatchers performance
 
-# ===== 5. 熄屏规则 (熄屏死锁 1.0W 极低功耗) =====
+# ===== 7. 熄屏规则 (熄屏死锁 1.0W 极低功耗) =====
 - powersave
 
-# ===== 6. 默认通配规则 (所有微信/QQ/抖音/淘宝/Chrome等日常App自动走均衡) =====
+# ===== 8. 默认通配规则 (所有微信/QQ/B站/小红书/Chrome/淘宝等日常App自动走均衡) =====
 * balance
