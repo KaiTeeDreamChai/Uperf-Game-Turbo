@@ -47,6 +47,7 @@ install_uperf() {
     echo "auto" > "$USER_PATH/cur_powermode.txt"
     
     set_perm_recursive "$BIN_PATH" 0 0 0755 0755 u:object_r:system_file:s0
+    set_perm_recursive "$MODULE_PATH/script" 0 0 0755 0755 u:object_r:system_file:s0
     echo "- 核心调度文件与策略配置部署完成"
 }
 
