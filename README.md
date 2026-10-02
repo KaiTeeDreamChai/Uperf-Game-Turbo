@@ -71,5 +71,5 @@
 **感谢Ywx，Yc与Asoulopt等众大佬无私开源精神**，本项目基于以下项目修改，二次开发
 - 本项目二次修改自：[yinwanxi/Uperf-Game-Turbo](https://github.com/yinwanxi/Uperf-Game-Turbo)
 - 原项目核心调度引擎基于：[yc9559/uperf](https://github.com/yc9559/uperf) (Author: Matt Yang)
-- A-SOUL 线程放置模块基于：[A-SOUL Affinity Optimization](https://github.com/chenzyadb/asoul_opt)
+- A-SOUL 线程放置模块基于：[A-SOUL Games Optimization](https://github.com/nakixii/Magisk_AsoulOpt) (Author: nakixii)
 - 遵循 [Apache-2.0 License](LICENSE) 开源协议。
