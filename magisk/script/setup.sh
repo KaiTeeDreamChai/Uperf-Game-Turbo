@@ -56,16 +56,6 @@ check_compatibility() {
     if [ -d "/data/adb/modules/unity_affinity_opt" ] || [ -d "/data/adb/modules_update/unity_affinity_opt" ]; then
         rm -rf /data/adb/modules*/unity_affinity_opt
     fi
-
-    # 针对 AsoulOpt 模块在特定 ROM 下死机重启的兼容性警示
-    if [ -d "/data/adb/modules/asoul_affinity_opt" ] || [ -d "/data/adb/modules_update/asoul_affinity_opt" ]; then
-        echo "-----------------------------------------------------"
-        echo "! [兼容性提示] 检测到已安装 A-SOUL 优化模块 (asoul_affinity_opt)"
-        echo "! 在一加 13T（骁龙8至尊版）某些特定 ROM（如 crDroid 17.0 等）下："
-        echo "! AsoulOpt 锁定 core_ctl 会干扰 CPU 息屏睡眠，易导致黑屏死机、发热与重启！"
-        echo "! 本版本 (1.51.2) 已彻底剥离内置 AsoulOpt；若遇到息屏假死，建议停用该模块。"
-        echo "-----------------------------------------------------"
-    fi
 }
 
 fix_module_prop() {
@@ -74,9 +64,9 @@ fix_module_prop() {
 }
 
 echo "====================================================="
-echo "  Uperf Game Turbo (sdm8e 一加13T 专属定制版 v1.51.2)"
+echo "  Uperf Game Turbo (sdm8e 一加13T 专属定制版)"
 echo "  基准: Uperf Game Turbo 1.51 + EAS 2+6 Oryon 能量模型"
-echo "  优化: 触屏响应 2.0s | 三级分档调度 | 熄屏省电 | 纯净无AsoulOpt"
+echo "  优化: 触屏响应 2.0s | 三级分档调度 | 熄屏省电 | 纯净精简"
 echo "====================================================="
 
 install_uperf

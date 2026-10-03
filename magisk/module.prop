@@ -1,6 +1,6 @@
 id=uperf
 name=Uperf Game Turbo (sdm8e 专属定制版)
-version=1.51.2-sdm8e-Custom
-versionCode=260424
+version=1.51.1-sdm8e-Custom
+versionCode=260423
 author=Matt Yang & 吟惋兮 (KaiTeeDreamChai 定制)
-description=专为一加13T（骁龙8至尊版/SM8750）深度定制。剔除冗余芯片代码，无内置AsoulOpt（避免特定ROM息屏死锁重启），触屏响应2.0s，三级分档调度，内置低电量守护。
+description=专为一加13T（骁龙8至尊版/SM8750）深度定制。剔除冗余芯片代码，触屏提频优化至2.0s，三级分档调度（系统省电/日常均衡/游戏性能），原生支持熄屏省电及内置3分钟低电量守护。
