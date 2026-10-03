@@ -51,38 +51,21 @@ install_uperf() {
     echo "- 核心调度文件与策略配置部署完成"
 }
 
-install_corp() {
+check_compatibility() {
+    # 清理历史冲突模块残留
     if [ -d "/data/adb/modules/unity_affinity_opt" ] || [ -d "/data/adb/modules_update/unity_affinity_opt" ]; then
         rm -rf /data/adb/modules*/unity_affinity_opt
     fi
-    CUR_ASOPT_VERSIONCODE="$(get_value ASOPT_VERSIONCODE "$MODULE_PATH"/module.prop)"
-    asopt_module_version="0"
-    if [ -f "/data/adb/modules/asoul_affinity_opt/module.prop" ]; then
-        asopt_module_version="$(get_value versionCode /data/adb/modules/asoul_affinity_opt/module.prop)"
-        echo "- AsoulOpt 当前版本: $asopt_module_version, 内置版本: $CUR_ASOPT_VERSIONCODE"
-        if [ "$CUR_ASOPT_VERSIONCODE" -gt "$asopt_module_version" ]; then
-            echo "* 正在将 A-SOUL 线程放置模块更新至最新版本..."
-            killall -9 AsoulOpt 2>/dev/null
-            rm -rf /data/adb/modules*/asoul_affinity_opt
-            if [ -x "$(command -v magisk)" ]; then
-                magisk --install-module "$MODULE_PATH"/modules/asoulopt.zip
-            elif [ -x "/data/adb/ksu/bin/ksud" ]; then
-                /data/adb/ksu/bin/ksud module install "$MODULE_PATH"/modules/asoulopt.zip
-            fi
-        else
-            echo "* A-SOUL 线程放置模块已是最新版本，无需重复安装"
-        fi
-    else
-        echo "* 正在静默安装 A-SOUL 游戏线程放置优化模块..."
-        killall -9 AsoulOpt 2>/dev/null
-        rm -rf /data/adb/modules*/asoul_affinity_opt
-        if [ -x "$(command -v magisk)" ]; then
-            magisk --install-module "$MODULE_PATH"/modules/asoulopt.zip
-        elif [ -x "/data/adb/ksu/bin/ksud" ]; then
-            /data/adb/ksu/bin/ksud module install "$MODULE_PATH"/modules/asoulopt.zip
-        fi
+
+    # 针对 AsoulOpt 模块在特定 ROM 下死机重启的兼容性警示
+    if [ -d "/data/adb/modules/asoul_affinity_opt" ] || [ -d "/data/adb/modules_update/asoul_affinity_opt" ]; then
+        echo "-----------------------------------------------------"
+        echo "! [兼容性提示] 检测到已安装 A-SOUL 优化模块 (asoul_affinity_opt)"
+        echo "! 在一加 13T（骁龙8至尊版）某些特定 ROM（如 crDroid 17.0 等）下："
+        echo "! AsoulOpt 锁定 core_ctl 会干扰 CPU 息屏睡眠，易导致黑屏死机、发热与重启！"
+        echo "! 本版本 (1.51.2) 已彻底剥离内置 AsoulOpt；若遇到息屏假死，建议停用该模块。"
+        echo "-----------------------------------------------------"
     fi
-    rm -rf "$MODULE_PATH"/modules/asoulopt.zip
 }
 
 fix_module_prop() {
@@ -91,13 +74,13 @@ fix_module_prop() {
 }
 
 echo "====================================================="
-echo "  Uperf Game Turbo (sdm8e 一加13T 专属定制版)"
+echo "  Uperf Game Turbo (sdm8e 一加13T 专属定制版 v1.51.2)"
 echo "  基准: Uperf Game Turbo 1.51 + EAS 2+6 Oryon 能量模型"
-echo "  优化: 触屏响应 2.0s | 三级分档调度 | 熄屏省电 | 纯净精简"
+echo "  优化: 触屏响应 2.0s | 三级分档调度 | 熄屏省电 | 纯净无AsoulOpt"
 echo "====================================================="
 
 install_uperf
 fix_module_prop
-install_corp
+check_compatibility
 
 echo "- 安装与初始化完成！重启手机后自动生效。"

@@ -5,6 +5,12 @@
 > 本项目基于 **[yinwanxi/Uperf-Game-Turbo](https://github.com/yinwanxi/Uperf-Game-Turbo)**（作者：Matt Yang / 吟惋兮）精简与二次开发。  
 > **仅针对一加 13T（Snapdragon 8 Elite）专属定制，不支持其他任何Soc，理论上你可以在其他同8E设备上尝试使用，不保证有效**
 
+> [!WARNING]
+> **关于 A-SOUL 优化模块 (AsoulOpt) 兼容性声明与移除说明 (v1.51.2 重要变更)**  
+> 自 **1.51.2** 版本起，本项目已**彻底剥离并移除内置的 A-SOUL 游戏线程放置优化模块 (`asoul_affinity_opt`)**。  
+> **原因分析**：经底层内核诊断与历史故障日志分析，在一加 13T（骁龙 8 至尊版 / SM8750）某些特定版本的 ROM（如基于早期 Android 17 / Linux 6.6 内核的 crDroid 17.0 等）下，AsoulOpt 模块对 `/sys/devices/system/cpu/cpu*/core_ctl/` 进行只读强锁以及高频动态绑核，会严重干扰高通 Oryon 架构核心在息屏睡眠时的 CPU 离线（CPU Hotplug）与低功耗状态（C-States）下电流程，进而与触控驱动（Synaptics）的休眠通道产生竞态死锁，极易引发**手机静置息屏后黑屏假死、无法点亮、持续发热（Sleep of Death）并最终导致强制重启**。  
+> 为了确保系统在类原生及第三方 ROM 下的绝对稳定性，本调度自 1.51.2 起保持纯净独立，不再附带或强装 AsoulOpt。使用此类特定 ROM 的用户亦**强烈建议不要额外自行刷入 AsoulOpt**。
+
 ---
 
 ## 一、 项目背景与修改概述
@@ -18,9 +24,10 @@
 
 ## 二、 核心修改与定制特性
 
-### 1. 纯粹专机专精，极致轻量化
-- **剔除 120+ 冗余芯片配置**：彻底删除所有除8E以外的任何芯片的配置文件与安装检测
-- **全自动静默部署**：精简 `setup.sh`，剔除音量键等待与复杂分支判断，安装时直接下发目标 8E 配置文件，并自动静默配置 A-SOUL 游戏线程亲和性优化组件。
+### 1. 纯粹专机专精，极致轻量化与高稳定性 (v1.51.2)
+- **剔除 120+ 冗余芯片配置**：彻底删除所有除 8E 以外的任何芯片的配置文件与安装检测代码；
+- **全自动静默部署**：精简 `setup.sh`，剔除音量键等待与复杂分支判断，安装时直接下发目标 8E 专属配置文件；
+- **纯净调度，无附带第三方绑核组件**：自 1.51.2 起彻底移除内置的 AsoulOpt 模块，规避特定 ROM 下的息屏死机重启风险。
 
 ### 2. 触屏响应时间调优（4.0s 优化至 2.0s）
 - 原版在 `modules.switcher.hintDuration` 中设置了 `"touch": 4.0`（4 秒提频窗口），导致日常轻触屏幕阅读时 CPU 也会长时间处于超大核高频空转状态。
@@ -60,7 +67,7 @@
 - **冲突排查**：**安装前请务必停用或卸载 `fas-rs`、其他第三方 Uperf 或限频模块**，避免双调度冲突！
 
 ### 刷入方法
-1. 在 Release 或本地打包生成 `Uperf-Game-Turbo-sdm8e-Custom.zip`；
+1. 在 Release 下载或本地打包生成 `Uperf-Game-Turbo-sdm8e-Custom.zip`；
 2. 在 Root 管理器（如 KernelSU Next）中选择 **从本地安装**，选择该 zip 包；
 3. 刷入过程约 2 秒完成，刷入后**重启手机**即可；
 4. 开机后可查看 `/sdcard/Android/yc/uperf/uperf_log.txt` 验证调度运行状态。
@@ -68,8 +75,7 @@
 ---
 
 ## 四、 鸣谢与开源许可
-**感谢Ywx，Yc与Asoulopt等众大佬无私开源精神**，本项目基于以下项目修改，二次开发
+**感谢Ywx与Yc等众大佬无私开源精神**，本项目基于以下项目修改，二次开发
 - 本项目二次修改自：[yinwanxi/Uperf-Game-Turbo](https://github.com/yinwanxi/Uperf-Game-Turbo)
 - 原项目核心调度引擎基于：[yc9559/uperf](https://github.com/yc9559/uperf) (Author: Matt Yang)
-- A-SOUL 线程放置模块基于：[A-SOUL Games Optimization](https://github.com/nakixii/Magisk_AsoulOpt) (Author: nakixii)
 - 遵循 [Apache-2.0 License](LICENSE) 开源协议。
